@@ -405,7 +405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724507463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.94, y: 0.5, z: 2.912}
+  m_LocalPosition: {x: -0.94, y: 0.5, z: 8.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -502,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769398840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: -8.74, y: 0.5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,8 +585,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.51988876, y: 0.27073064, z: -0.178063, w: 0.79038864}
-  m_LocalPosition: {x: -2.4711761, y: 9.344984, z: -3.183794}
+  m_LocalRotation: {x: 0.5152344, y: 0.19990121, z: -0.124985345, w: 0.8239853}
+  m_LocalPosition: {x: -7.5902433, y: 18.563278, z: -10.006547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -619,7 +619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013782912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.131, y: 0.34000003, z: 0}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -766,7 +766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700831873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.799, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: 7.53, y: 0.5, z: -4.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -887,9 +887,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d455deeeb079dc3478ae95dcb9381020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 1
-  maxAngle: 45
   tagName: 
+  distance: 20
+  maxAngle: 180
 --- !u!114 &1753931359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75b2665349127b43a2bd5faddf898c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 7
 --- !u!114 &1753931360
 MonoBehaviour:
   m_ObjectHideFlags: 0
