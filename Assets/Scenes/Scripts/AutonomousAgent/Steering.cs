@@ -26,6 +26,28 @@ public static class Steering
         return force;
     }
 
+    public static Vector3 Cohension(Agent agent, GameObject[] neighbors)
+    {
+        Vector3 center = Vector3.zero;
+        foreach (GameObject n in neighbors)
+        {
+            center += n.transform.position;
+        }
+        center = center / neighbors.Length;
+        Vector3 force = CalculateSteering(agent, center - agent.transform.position);
+        return force;
+    }
+
+    public static Vector3 Separation(Agent agent, GameObject[] neighbors, float radius) 
+    {
+        return Vector3.zero;
+    }
+
+    public static Vector3 Alignment(Agent agent, GameObject[] neighbors)
+    {
+        return Vector3.zero;
+    }
+
     public static Vector3 Wander(AutonomousAgent agent)
     {
         // randomly adjust angle +/- displacement 
@@ -36,6 +58,8 @@ public static class Steering
         Vector3 point = rotation * (Vector3.forward * agent.wanderRadius);
         // set point in front of agent at distance length 
         Vector3 forward = agent.transform.forward * agent.wanderDistance;
+
+        Debug.DrawRay(agent.transform.position, forward + point, Color.red);
 
         Vector3 force = CalculateSteering(agent, forward + point);
 
