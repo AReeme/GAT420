@@ -17,4 +17,5 @@ public class AutonomousAgentData : ScriptableObject
 	[Range(0, 5)] public float cohesionWeight = 1;
 	[Range(0, 5)] public float separationWeight = 1;
 	[Range(0, 5)] public float alignmentWeight = 1;
+	[Range(0, 10)] public float obstacleWeight = 10;
 }
