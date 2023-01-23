@@ -4,22 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 public class WaypointNavNode : NavNode
-{
-    [SerializeField] private NavNode[] nodes;
-    [SerializeField, Range(1, 10)] private float radius = 1;
-
-	private void OnValidate()
-	{
-		GetComponent<SphereCollider>().radius = radius;
-	}
-
+{ 
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.TryGetComponent<NavAgent>(out NavAgent navAgent))
 		{
-			if (navAgent.targetNode == this)
+			if (navAgent.targetNode == this && neighbors.Count > 0)
 			{
-				navAgent.targetNode = nodes[Random.Range(0, nodes.Length)];
+				navAgent.targetNode = neighbors[Random.Range(0, neighbors.Count)];
 			}
 		}
 
@@ -29,22 +21,10 @@ public class WaypointNavNode : NavNode
 	{
 		if (other.gameObject.TryGetComponent<NavAgent>(out NavAgent navAgent))
 		{
-			if (navAgent.targetNode == this)
+			if (navAgent.targetNode == this && neighbors.Count > 0)
 			{
-				navAgent.targetNode = nodes[Random.Range(0, nodes.Length)];
+				navAgent.targetNode = neighbors[Random.Range(0, neighbors.Count)];
 			}
-		}
-	}
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(transform.position, radius);
-
-		Gizmos.color = Color.green;
-		foreach (NavNode node in nodes)
-		{
-			Gizmos.DrawLine(transform.position, node.transform.position);
 		}
 	}
 }
