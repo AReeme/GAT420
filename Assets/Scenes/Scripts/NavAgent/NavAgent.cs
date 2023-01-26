@@ -29,6 +29,17 @@ public class NavAgent : Agent
 		{
 			movement.MoveTowards(targetNode.transform.position);
 		}
+		else
+		{
+			movement.Stop();
+		}
+	}
+	public void SetDestination(NavNode destinationNode)
+	{
+		navPath.startNode = GetNearestNode();
+		navPath.endNode = destinationNode;
+		navPath.StartPath();
+		targetNode = navPath.startNode;
 	}
 
 	public NavNode GetNextTarget(NavNode node)
@@ -39,10 +50,10 @@ public class NavAgent : Agent
 
 	public NavNode GetNearestNode()
 	{
-		var nodes = NavNode.GetNodes();
-		SortByDistance(nodes.ToList());
+		var nodes = NavNode.GetNodes().ToList();
+		SortByDistance(nodes);
 
-		return (nodes.Length == 0) ? null : nodes[0];
+		return (nodes.Count == 0) ? null : nodes[0];
 	}
 
 
@@ -57,4 +68,5 @@ public class NavAgent : Agent
 		float squaredRangeB = (b.transform.position - transform.position).sqrMagnitude;
 		return squaredRangeA.CompareTo(squaredRangeB);
 	}
+
 }
