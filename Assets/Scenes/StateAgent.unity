@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317f2ddc52979384285eea3fd87159c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
 --- !u!136 &47692830
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -597,7 +597,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a8840666a735a47439a6ad8f742cbe21, type: 3}
   m_Controller: {fileID: 9100000, guid: 95e421fb440dd5d408eecdb65282fe6d, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1471,10 +1471,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1305954728}
   - component: {fileID: 1305954729}
+  - component: {fileID: 1305954733}
+  - component: {fileID: 1305954730}
+  - component: {fileID: 1305954732}
   - component: {fileID: 1305954727}
   - component: {fileID: 1305954726}
   - component: {fileID: 1305954725}
-  - component: {fileID: 1305954730}
+  - component: {fileID: 1305954731}
+  - component: {fileID: 1305954734}
   m_Layer: 0
   m_Name: Agent01
   m_TagString: Untagged
@@ -1576,10 +1580,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perception: {fileID: 1305954730}
-  movement: {fileID: 0}
+  movement: {fileID: 1305954732}
   animator: {fileID: 491931123}
-  navigation: {fileID: 0}
+  navigation: {fileID: 1305954733}
   perceived: []
+  mainCamera: {fileID: 0}
 --- !u!114 &1305954730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,11 +1598,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Player
-  distance: 5
+  distance: 10
   maxAngle: 90
   raycastTransform: {fileID: 1123183647}
   numRaycast: 16
   radius: 1
+--- !u!195 &1305954731
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305954724}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1305954732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305954724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d53f6816bfa73e43a5c8115c2c9293d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  minSpeed: 5
+  maxForce: 5
+  turnRate: 90
+  navMeshAgent: {fileID: 1305954731}
+--- !u!114 &1305954733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305954724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d799b4e240ff808499b7c14c7169e4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1305954734
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305954724}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1406809523
 Transform:
   m_ObjectHideFlags: 0
@@ -1713,7 +1785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1499255404
 MonoBehaviour:
   m_ObjectHideFlags: 0

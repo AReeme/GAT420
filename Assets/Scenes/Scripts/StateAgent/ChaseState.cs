@@ -10,12 +10,13 @@ public class ChaseState : State
 
     public override void OnEnter()
     {
-        Debug.Log("Chase Enter");
+        owner.navigation.targetNode = null;
+        owner.movement.Resume();
     }
 
     public override void OnExit()
     {
-        Debug.Log("Chase Exit");
+        
     }
 
     public override void OnUpdate()
@@ -23,6 +24,10 @@ public class ChaseState : State
         if (owner.perceived.Length == 0)
         {
             owner.stateMachine.StartState(nameof(IdleState));
+        }
+        else
+        {
+            owner.movement.MoveTowards(owner.perceived[0].transform.position);
         }
     }
 }

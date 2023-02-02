@@ -21,8 +21,16 @@ public class Navigation : MonoBehaviour
 		return (nodes.Count == 0) ? null : nodes[0];
 	}
 
+    public NavNode GetNearestNodeWithTag(string tag)
+    {
+        var nodes = NavNode.GetNodesWithTag(tag).ToList();
+        SortByDistance(nodes);
 
-	public void SortByDistance(List<NavNode> nodes)
+        return (nodes.Count == 0) ? null : nodes[0];
+    }
+
+
+    public void SortByDistance(List<NavNode> nodes)
 	{
 		nodes.Sort(CompareDistance);
 	}
