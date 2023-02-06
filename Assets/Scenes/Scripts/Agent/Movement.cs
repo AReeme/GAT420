@@ -8,8 +8,9 @@ public abstract class Movement : MonoBehaviour
 	[Range(1, 10)] public float minSpeed = 5;
 	[Range(1, 100)] public float maxForce = 5;
 	[Range(1, 100)] public float turnRate = 90;
+    internal Quaternion wanderRadius;
 
-	public virtual Vector3 velocity { get; set; } = Vector3.zero;
+    public virtual Vector3 velocity { get; set; } = Vector3.zero;
 	public virtual Vector3 acceleration { get; set; } = Vector3.zero;
 	public virtual Vector3 direction { get { return velocity.normalized; } }
 	public virtual Vector3 destination { get; set; } = Vector3.zero;
