@@ -12,7 +12,8 @@ public class IdleState : State
 
     public override void OnEnter()
     {
-        timer = 2;
+        owner.movement.Stop();
+        timer = Random.Range(1, 3);
     }
 
     public override void OnExit()

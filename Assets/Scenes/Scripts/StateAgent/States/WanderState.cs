@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WanderState : State
 {
     private Vector3 target;
-    private float reachThreshold = 0.1f;
 
     public WanderState(StateAgent owner) : base(owner)
     {
@@ -15,9 +15,8 @@ public class WanderState : State
     {
         owner.navigation.targetNode = null;
         owner.movement.Resume();
-
-        // create random target position around owner
-        target = GetRandomTargetPosition(owner.transform.position, 5.0f, 360.0f);
+        // create random target position around owner 
+        target = owner.transform.position + Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * Vector3.forward * 5;
     }
 
     public override void OnExit()
@@ -30,17 +29,10 @@ public class WanderState : State
         // draw debug line from current position to target position 
         Debug.DrawLine(owner.transform.position, target);
         owner.movement.MoveTowards(target);
-
-        // Check if the agent has reached the target position
-        if (Vector3.Distance(owner.transform.position, target) < reachThreshold)
+        if (owner.movement.velocity.magnitude == 0) 
         {
-            owner.stateMachine.StartState(nameof(AttackState));
+            owner.stateMachine.StartState(nameof(IdleState));
         }
-    }
-
-    private Vector3 GetRandomTargetPosition(Vector3 ownerPosition, float distance, float angle)
-    {
-        return ownerPosition + Quaternion.AngleAxis(Random.Range(0, angle), Vector3.up) * Vector3.forward * distance;
     }
 }
 
