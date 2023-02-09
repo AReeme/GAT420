@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State
+public class DeathState : State
 {
-    public IdleState(StateAgent owner) : base(owner)
+    public DeathState(StateAgent owner) : base(owner)
     {
     }
 
     public override void OnEnter()
     {
+        owner.animator.SetBool("isDead", true);
         owner.movement.Stop();
-        owner.timer.value = Random.Range(1, 3);
     }
 
     public override void OnExit()
@@ -21,6 +21,9 @@ public class IdleState : State
 
     public override void OnUpdate()
     {
-        //
+        if (owner.animationDone) 
+        {
+            GameObject.Destroy(owner.gameObject, 1);
+        }
     }
 }

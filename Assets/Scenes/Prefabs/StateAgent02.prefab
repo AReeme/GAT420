@@ -50,8 +50,8 @@ GameObject:
   - component: {fileID: 38265107977226025}
   - component: {fileID: 38265107977226028}
   m_Layer: 0
-  m_Name: StateAgent01
-  m_TagString: Agent01
+  m_Name: StateAgent02
+  m_TagString: Agent02
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c00c40ea111d7640ae71e18453467ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagName: Agent02
+  tagName: Agent01
   distance: 10
   maxAngle: 60
   raycastTransform: {fileID: 38265107962356381}
@@ -303,6 +303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8134667007107732436, guid: a8840666a735a47439a6ad8f742cbe21, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fc1e83436d8490d4f95e65f99e5aeb77, type: 2}
     - target: {fileID: 919132149155446097, guid: a8840666a735a47439a6ad8f742cbe21, type: 3}
       propertyPath: m_Name
       value: Ch15_nonPBR
