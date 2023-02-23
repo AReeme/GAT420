@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    private float timer;
-
     public AttackState(StateAgent owner) : base(owner)
     {
     }
@@ -13,11 +11,9 @@ public class AttackState : State
     {
         owner.navigation.targetNode = null;
         owner.movement.Stop();
-        owner.animator.SetTrigger("Attack");
 
         AnimationClip[] clips = owner.animator.runtimeAnimatorController.animationClips;
         AnimationClip clip = clips.FirstOrDefault<AnimationClip>(clip => clip.name == "Punch");
-        timer = (clip != null) ? clip.length : 1;
 
         var colliders = Physics.OverlapSphere(owner.transform.position, 2);
         foreach(var collider in colliders)
@@ -26,7 +22,15 @@ public class AttackState : State
 
             if (collider.gameObject.TryGetComponent<StateAgent>(out var component))
             {
-                component.health.value -= Random.Range(20, 50);
+                if (component.health.value > 0) 
+                {
+                    owner.animator.SetTrigger("Attack");
+                    component.health.value -= Random.Range(20, 50);
+                }
+                else
+                {
+                    owner.stateMachine.StartState(nameof(IdleState));
+                }
             }
         }
     }
@@ -38,10 +42,6 @@ public class AttackState : State
 
     public override void OnUpdate()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0) 
-        {
-            owner.stateMachine.StartState(nameof(ChaseState));
-        }
+
     }
 }

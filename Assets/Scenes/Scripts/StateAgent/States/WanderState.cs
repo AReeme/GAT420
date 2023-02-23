@@ -17,6 +17,7 @@ public class WanderState : State
         owner.movement.Resume();
         // create random target position around owner 
         target = owner.transform.position + Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up) * Vector3.forward * 5;
+        owner.movement.MoveTowards(target);
     }
 
     public override void OnExit()
@@ -27,12 +28,12 @@ public class WanderState : State
     public override void OnUpdate()
     {
         // draw debug line from current position to target position 
-        Debug.DrawLine(owner.transform.position, target);
-        owner.movement.MoveTowards(target);
-        if (owner.movement.velocity.magnitude == 0) 
-        {
-            owner.stateMachine.StartState(nameof(IdleState));
-        }
+        //Debug.DrawLine(owner.transform.position, target);
+        //owner.movement.MoveTowards(target);
+        //if (owner.movement.velocity.magnitude == 0) 
+        //{
+        //    owner.stateMachine.StartState(nameof(IdleState));
+        //}
     }
 }
 

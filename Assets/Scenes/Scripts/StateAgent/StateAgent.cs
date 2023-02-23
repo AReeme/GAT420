@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,8 +52,16 @@ public class StateAgent : Agent
         stateMachine.AddTransition(nameof(PatrolState), new Transition(new Condition[] { enemySeenCondition, healthOkCondition }), nameof(ChaseState));
         stateMachine.AddTransition(nameof(PatrolState), new Transition(new Condition[] { enemySeenCondition, healthLowCondition }), nameof(EvadeState));
 
-        stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNotSeenCondition }), nameof(IdleState));
+        stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNotSeenCondition, timerExpiredCondition }), nameof(IdleState));
         stateMachine.AddTransition(nameof(ChaseState), new Transition(new Condition[] { enemyNearCondition }), nameof(AttackState));
+
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { timerExpiredCondition}), nameof(IdleState));
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { enemySeenCondition, enemyNearCondition, healthOkCondition }), nameof(AttackState));
+        stateMachine.AddTransition(nameof(WanderState), new Transition(new Condition[] { enemySeenCondition, enemyNearCondition, healthLowCondition }), nameof(EvadeState));
+
+        stateMachine.AddTransition(nameof(AttackState), new Transition(new Condition[] { enemySeenCondition, healthOkCondition }), nameof(ChaseState));
+
+        stateMachine.AddTransition(nameof(EvadeState), new Transition(new Condition[] { enemyNotSeenCondition, timerExpiredCondition}), nameof(IdleState));
 
         stateMachine.AddAnyTransition(new Transition(new Condition[] { deathCondition }), nameof(DeathState));
 
@@ -68,7 +77,7 @@ public class StateAgent : Agent
         enemyDistance.value = (enemySeen) ? (Vector3.Distance(transform.position, perceived[0].transform.position)) : float.MaxValue;
         timer.value -= Time.deltaTime;
         atDestination.value = ((movement.destination - transform.position).sqrMagnitude <= 1);
-        animationDone.value = (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0));
+        animationDone.value = (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f && !animator.IsInTransition(0));
 
         stateMachine.Update();
         if(navigation.targetNode != null)
